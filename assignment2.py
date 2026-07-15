@@ -1,4 +1,5 @@
 import requests
+import random
 import urllib.parse
 import streamlit as st
 import json
@@ -22,21 +23,23 @@ st.markdown("""
 <style>
 
 .nav-link{
-    border-radius:12px !important;
-    margin-bottom:8px;
-    padding:10px 15px !important;
+    border-radius:14px !important;
+    margin-bottom:10px;
+    padding:12px 18px !important;
     font-size:16px !important;
+    transition: all 0.3s ease;
 }
 
-/* Selected Menu */
 .nav-link-selected{
-    background-color:#4F8BF9 !important;
+    background: linear-gradient(90deg,#4F8BF9,#6C63FF) !important;
     color:white !important;
+    font-weight:600;
+    box-shadow:0 4px 12px rgba(79,139,249,0.35);
 }
 
-/* Hover Effect */
 .nav-link:hover{
-    background-color:#30304d !important;
+    background:#2d2d44 !important;
+    transform:translateX(4px);
 }
 
 </style>
@@ -44,16 +47,75 @@ st.markdown("""
 
 
 # Sidebar
+
+
+st.sidebar.markdown("""
+<div style="
+background:#1E3A2F;
+padding:16px;
+border-radius:12px;
+text-align:center;
+margin-top:10px;
+margin-bottom:10px;
+">
+
+<div style="font-size:22px;">🟢</div>
+
+<h4 style="margin:5px 0;">System Status</h4>
+
+<p style="margin:0;color:#8EE58E;">
+Online
+</p>
+
+</div>
+""", unsafe_allow_html=True)
+
 st.sidebar.markdown(
     """
-# 🌍 AI Multiverse
+<div style="text-align:center;
+padding-bottom:8px;
+color:#A0A0A0;
+font-size:13px;">
 
-### Your Personal AI Hub
-"""
+✨ Build • Chat • Create
+
+</div>
+""",
+unsafe_allow_html=True
 )
-st.sidebar.success("🟢 AI Systems Online")
+
 st.sidebar.markdown("---")
-st.sidebar.caption("⚙️ Application Modules")
+
+
+st.sidebar.markdown("""
+<div style="
+background: linear-gradient(135deg,#4F8BF9,#6C63FF);
+padding:18px;
+border-radius:16px;
+color:white;
+text-align:center;
+margin-bottom:15px;
+">
+
+<h3 style="margin:0;">
+🚀 AI Workspace
+</h3>
+
+<p style="
+font-size:14px;
+margin-top:10px;
+line-height:1.6;
+">
+
+Create AI images<br>
+Chat with multiple AI personalities<br>
+Powered by Gemini
+
+</p>
+
+</div>
+""", unsafe_allow_html=True)
+
 with st.sidebar:
     feature = option_menu(
         menu_title="⚙️ Application Modules",
@@ -63,57 +125,92 @@ with st.sidebar:
         default_index=0,
     )
 
+st.sidebar.markdown("---")
+
+st.sidebar.markdown("""
+        <div style="
+        text-align:center;
+        font-size:13px;
+        color:gray;
+        padding-top:8px;
+        ">
+
+        ⚡ Powered by <b>Gemini AI</b><br>
+
+        Version 1.0.0
+
+        </div>
+        """, 
+        unsafe_allow_html=True)
+
+
 if feature == "AI Chat":
 
-    st.markdown(
-    """
-    <h1 style="text-align:center;">
-        🌍 AI Multiverse
-    </h1>
+    st.markdown("""
+        <div style="
+        background: linear-gradient(135deg,#4F8BF9,#6C63FF);
+        padding:30px;
+        border-radius:18px;
+        text-align:center;
+        color:white;
+        margin-bottom:25px;
+        box-shadow:0 8px 20px rgba(0,0,0,0.25);
+        ">
 
-    <h3 style="text-align:center; color:gray;">
-        ✨ Chat with Different AI Personalities
-    </h3>
-    """,
-    unsafe_allow_html=True,
-)
+        <h1 style="margin:0;">🌍 AI Multiverse</h1>
+
+        <p style="font-size:18px;margin-top:10px;">
+        Chat with multiple AI personalities powered by Gemini.
+        </p>
+
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 if feature == "AI Image Generator":
 
-    st.markdown(
-    """
-    <h1 style="text-align:center;">
-        🎨 AI Image Generator
-    </h1>
+   st.markdown("""
+        <div style="
+        background: linear-gradient(135deg,#4F8BF9,#6C63FF);
+        padding:30px;
+        border-radius:18px;
+        text-align:center;
+        color:white;
+        margin-bottom:25px;
+        box-shadow:0 8px 20px rgba(0,0,0,0.25);
+        ">
 
-    <h3 style="text-align:center; color:gray;">
-        🖼️ Turn your imagination into AI artwork
-    </h3>
-    """,
-    unsafe_allow_html=True,
-)
+        <h1 style="margin:0;">🎨 AI Image Studio</h1>
 
-with st.container(border=True):
+        <p style="font-size:18px;margin-top:10px;">
+        Create stunning AI artwork with just a few words.
+        </p>
 
-    st.subheader("👋 Welcome to AI Multiverse")
-
-    st.caption(
-        "Your personal AI workspace for chatting with unique personalities "
-        "and creating AI-generated images."
+        </div>
+        """,
+        unsafe_allow_html=True
     )
+   
 
-    st.markdown("")
+st.markdown("""
+### 🚀 Platform Overview
+""")
+col1, col2, col3 = st.columns(3)
 
-    col1, col2, col3 = st.columns(3)
+col1, col2, col3 = st.columns(3)
 
-    with col1:
-        st.info("🤖 **10 Personalities**")
+with col1:
+    st.info("🤖 10 AI Personalities")
 
-    with col2:
-        st.success("🎨 **2 AI Modules**")
+with col2:
+    st.success("🎨 AI Image Studio")
 
-    with col3:
-        st.warning("⚡ **Gemini AI**")
+with col3:
+    st.warning("⚡ Gemini Powered")
+
+st.sidebar.markdown("---")
+
 
 st.divider()
 
@@ -240,27 +337,72 @@ if feature == "AI Image Generator":
 
     with st.container(border=True):
 
-        prompt = st.text_input(
-            "Describe your image",
-            placeholder="A futuristic city at sunset..."
-        )
+        col1, col2 = st.columns([3,1])
 
-        style = st.selectbox(
-            "Choose Image Style",
-            [
-                "Realistic",
-                "Anime",
-                "Fantasy",
-                "Cyberpunk",
-                "Pixel Art",
-                "Watercolor"
-            ]
-        )
+        with col1:
+            prompt = st.text_input(
+                "📝 Describe your image",
+                placeholder="A futuristic city at sunset..."
+            )
 
-        if st.button(
-            "🎨 Generate Image",
-            use_container_width=True
-        ):
+        with col2:
+            style = st.selectbox(
+                "🎨 Style",
+                [
+                    "Realistic",
+                    "Anime",
+                    "Fantasy",
+                    "Cyberpunk",
+                    "Pixel Art",
+                    "Watercolor"
+                ]
+            )
+
+        with st.expander("⚙️ Advanced Settings"):
+
+            width = st.select_slider(
+                "Image Width",
+                options=[512, 768, 1024],
+                value=512
+            )
+
+            height = st.select_slider(
+                "Image Height",
+                options=[512, 768, 1024],
+                value=512
+            )
+
+            magic_enhance = st.checkbox(
+                "✨ Enable Magic Enhance",
+                help="Adds hidden AI quality keywords for better images."
+            )
+        
+        surprise_prompts = [
+            "An astronaut riding a horse on Mars",
+            "A cyberpunk street food vendor in Tokyo",
+            "A dragon flying over the Himalayas",
+            "A giant panda coding on a laptop",
+            "A floating castle above the clouds"
+        ]
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            surprise = st.button(
+                "🎲 Surprise Me!",
+                use_container_width=True
+            )
+
+        with col2:
+            generate = st.button(
+                "🎨 Generate Image",
+                use_container_width=True
+            )
+
+        if generate or surprise:
+            if surprise:
+                prompt = random.choice(surprise_prompts)
+                st.info(f"🎲 Surprise Prompt: {prompt}")
 
             if not prompt.strip():
                 st.warning("⚠️ Please enter an image description.")
@@ -268,14 +410,19 @@ if feature == "AI Image Generator":
 
             with st.spinner("Generating image..."):
 
-                final_prompt = (
-                    f"{prompt}, {style} style, cinematic lighting, ultra detailed"
-                )
+                final_prompt = f"{prompt}, {style} style"
+
+                if magic_enhance:
+                    final_prompt += (
+                        ", masterpiece, 8k resolution, highly detailed, "
+                        "trending on artstation, unreal engine 5 render"
+                    )
 
                 encoded_prompt = urllib.parse.quote(final_prompt)
 
                 image_url = (
                     f"https://image.pollinations.ai/prompt/{encoded_prompt}"
+                    f"?width={width}&height={height}"
                 )
 
                 response = requests.get(image_url)
@@ -286,18 +433,26 @@ if feature == "AI Image Generator":
                     st.error("❌ Failed to generate image.")
 
     # Display generated image
-    if st.session_state.generated_image:
+    # Display generated image
+if st.session_state.generated_image:
+
+    st.divider()
+
+    st.subheader("🖼️ Generated Result")
+
+    with st.container(border=True):
 
         st.image(
             st.session_state.generated_image,
-            caption="Generated Image",
             use_container_width=True
         )
 
+        st.markdown("")
+
         st.download_button(
-            label="📥 Download Image",
+            label="📥 Download High Quality Image",
             data=st.session_state.generated_image,
-            file_name="generated_image.png",
+            file_name=f"{style.lower().replace(' ', '_')}_image.png",
             mime="image/png",
             use_container_width=True
         )
