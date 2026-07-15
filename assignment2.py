@@ -120,7 +120,7 @@ Powered by Gemini
 
 with st.sidebar:
     feature = option_menu(
-        menu_title="⚙️ Application Modules",
+        menu_title= Application Modules",
         options=["AI Chat", "AI Image Generator"],
         icons=["chat-dots-fill", "image-fill"],
         menu_icon="robot",
