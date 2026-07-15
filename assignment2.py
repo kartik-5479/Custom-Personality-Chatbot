@@ -61,9 +61,11 @@ margin-bottom:10px;
 
 <div style="font-size:22px;">🟢</div>
 
-<h4 style="margin:5px 0;">System Status</h4>
+<h4 style="margin:5px 0; color:white;">
+System Status
+</h4>
 
-<p style="margin:0;color:#8EE58E;">
+<p style="margin:0; color:#9EF79E; font-weight:bold;">
 Online
 </p>
 
